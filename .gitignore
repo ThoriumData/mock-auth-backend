@@ -1,3 +1,6 @@
+# projects
+*.code-workspace
+
 # Logs
 logs
 *.log
