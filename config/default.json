@@ -1,15 +1,20 @@
 {
-  "port": 8085,
-  "cors-origin": "http://localhost:8080",
-  "secret": "supda-dupa-secret",
+  "port": 3000,
+  "cors-origin": "*",
+  "secret": "iAmSeatedInAnOfficeSurroundedByHeadsAndBodies",
   "debugOutput": true,
-  "authenticationRoute": "/auth",
+  "authenticationRoute": "/signin",
   "authorizationRoute": "/protected",
   "roles": ["admin"],
   "routes": [
     {
       "path": "/admin",
       "role": "admin"
-    }
+    },
+    {
+      "path": "/homepage",
+      "role": ""
+    },
+
   ]
 }

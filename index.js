@@ -26,20 +26,22 @@ app.use(setLogging);
 
 // Authentication route
 app.post(config.get('authenticationRoute'), function (req, res) {
-  if (req.body.identifier && req.body.password) {
-    req.log(`Attempting to authenticate user with ID '${req.body.identifier}'.`);
+	req.log('Authentication request for ' + req.body.user);
+
+  if (req.body.user && req.body.password) {
+    req.log(`Attempting to authenticate user with ID '${req.body.user}'.`);
     let token = null;
     try {
-      token = authenticate(req.body.identifier, req.body.password);
-      req.log(`Authentication of user with ID '${req.body.identifier}' successful! Token: ${token}`);
+      token = authenticate(req.body.user, req.body.password);
+      req.log(`Authentication of user with ID '${req.body.user}' successful! Token: ${token}`);
       res.json({ message: 'Login successful!', token: token });
     } catch (error) {
-      req.log(`Authentication of user with ID '${req.body.identifier}' failed.`);
+      req.log(`Authentication of user with ID '${req.body.user}' failed.`);
       res.status(401).end();
     }
   } else {
     req.log('Authentication request failed because of missing login credentials.');
-    res.status(400).json({ message: 'Request missing login credentials.' });
+    res.status(400).json({ message: 'Request is missing login credentials.' });
   }
 });
 
